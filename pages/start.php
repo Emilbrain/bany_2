@@ -17,7 +17,6 @@
             </div>
         </div>
     </div>
-
 </div>
 <!-- ---------------------------------BANNER AND HEADER-------------------------------------- -->
 
@@ -97,19 +96,19 @@
             </button>
             <div class="slides">
                 <div class="slide">
-                    <img src="assets/img/carusel/carusle2.jpg" alt="Image 4">
-                    <img src="assets/img/carusel/carusel3.jpg" alt="Image 5">
-                    <img src="assets/img/carusel/carusel4.png" alt="Image 6">
+                    <img src="assets/img/carusel/carusel8.jpg" alt="Image 4">
+                    <img src="assets/img/carusel/carusel9.jpg" alt="Image 5">
+                    <img src="assets/img/carusel/carusel10.jpg" alt="Image 6">
                 </div>
                 <div class="slide">
-                    <img src="assets/img/carusel/carusel5.jpg" alt="Image 7">
-                    <img src="assets/img/carusel/carusel6.jpg" alt="Image 8">
-                    <img src="assets/img/carusel/carusel7.jpg" alt="Image 9">
+                    <img src="assets/img/carusel/carusel11.jpg" alt="Image 7">
+                    <img src="assets/img/carusel/carusel12.jpg" alt="Image 8">
+                    <img src="assets/img/carusel/carusel13.jpg" alt="Image 9">
                 </div>
                 <div class="slide">
-                    <img src="assets/img/carusel/carusel-2.png" alt="Image 1">
-                    <img src="assets/img/carusel/carusel-3.png" alt="Image 2">
-                    <img src="assets/img/carusel/carusel-6.png" alt="Image 3">
+                    <img src="assets/img/carusel/carusel14.jpg" alt="Image 1">
+                    <img src="assets/img/carusel/carusel15.jpg" alt="Image 2">
+                    <img src="assets/img/carusel/carusel16.jpg" alt="Image 3">
                 </div>
             </div>
         </div>
@@ -402,7 +401,5 @@
             </div>
         </div>
     </div>
-</div>
-</div>
 </div>
 <!-- ---------------------------------FAQ-------------------------------------- -->

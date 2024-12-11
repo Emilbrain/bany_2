@@ -424,14 +424,16 @@ nav a {
 
 #next-btn {
     position: absolute;
-    top: 100px;
+    top: 50%;
     right: 0;
+    transform: translate(0, -50%);
     z-index: 1000;
 }
 
 #prev-btn {
     position: absolute;
-    top: 100px;
+    top: 50%;
+    transform: translate(0, -50%);
     left: 0;
     z-index: 1000;
 }
@@ -1117,7 +1119,7 @@ nav a {
 }
 
 footer {
-    width: 1300px;
+    /* width: 1300px; */
     margin-top: 150px;
     /* background: #81A07D; */
     background: #303230;
@@ -1225,16 +1227,32 @@ label {
     color: #303230;
 }
 
-@media screen and (max-width: 1800px) and (min-width: 970px) {
+@media screen and (max-width: 1800px) {
     .slider-container {
-        width: 1200px;
+        /* width: 1200px; */
     }
 
 }
 
 
-@media screen and (max-width: 1330px) and (min-width: 970px) {}
+@media screen and (max-width: 1330px) and (min-width: 970px) {
+    .section {
+        width: 850px;
+    }
 
-@media screen and (max-width: 969px) and (min-width: 730px) {}
+    .our__card {
+        flex-direction: column;
+    }
+}
 
-@media screen and (max-width: 729px) {}
+@media screen and (max-width: 969px) and (min-width: 730px) {
+    .section {
+        width: 700px;
+    }
+}
+
+@media screen and (max-width: 729px) {
+    .section {
+        width: 700px;
+    }
+}
