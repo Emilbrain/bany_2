@@ -41,6 +41,10 @@ body {
     gap: 50px;
 }
 
+.mobile {
+    display: none;
+}
+
 
 /* ---------------------------------SETTING-------------------------------------- */
 
@@ -225,7 +229,7 @@ nav a {
 /* ---------------------------------BANNER-------------------------------------- */
 .banner {
     width: 100%;
-    height: 90vh;
+    height: 100vh;
     background-image: url("../img/bg/bg.png");
     background-size: cover;
     background-position: center;
@@ -247,24 +251,25 @@ nav a {
     font-weight: 400;
     line-height: 99px;
     text-transform: uppercase;
-    margin-bottom: 100px;
 
     color: #FBF6E6;
 }
 
-.container_right {
+/* .container_right {
     float: right;
-}
+} */
 
 .banner-content__subtitle {
     font-family: "Open Sans";
     font-size: 22px;
     font-style: normal;
-    font-weight: 300;
+    font-weight: 3400;
     line-height: 31px;
-    margin-bottom: 40px;
 
     color: #FCF9EF;
+
+    margin-bottom: 20px;
+    margin-top: 20px;
 }
 
 /* ---------------------------------BANNER-------------------------------------- */
@@ -359,6 +364,10 @@ nav a {
     line-height: 11px;
 
     margin-top: 11px;
+}
+
+.about2__column img {
+    width: 100%;
 }
 
 /* ---------------------------------ABOUT-------------------------------------- */
@@ -557,6 +566,8 @@ nav a {
 }
 
 .our-btn a {
+    width: 70%;
+    text-align: center;
     color: #FFF;
     display: inline-block;
     font-family: "Open Sans";
@@ -566,8 +577,10 @@ nav a {
     line-height: normal;
     border-radius: 15px;
     background: #303230;
-    padding: 15px 400px;
+    /* padding: 15px 400px; */
+    padding: 15px 0;
     transition: all .5s;
+    border: 1px solid #303230;
 }
 
 /* ---------------------------------hover-------------------------------------- */
@@ -765,7 +778,7 @@ nav a {
 /* ---------------------------------PROGREAM-------------------------------------- */
 .program__bg {
     width: 100%;
-    padding: 80px 0px 20px 0px;
+    padding: 80px 0px 50px 0px;
     background-color: #303230;
 }
 
@@ -1124,7 +1137,7 @@ footer {
     /* background: #81A07D; */
     background: #303230;
     padding: 100px 150px 50px 150px;
-    border-radius: 20px;
+    border-radius: 20px 20px 0 0;
 }
 
 .footer__row {
@@ -1227,32 +1240,90 @@ label {
     color: #303230;
 }
 
-@media screen and (max-width: 1800px) {
-    .slider-container {
-        /* width: 1200px; */
-    }
 
-}
 
 
 @media screen and (max-width: 1330px) and (min-width: 970px) {
+
+    /*-----------------------------------SETTING-----------------------------------------*/
     .section {
-        width: 850px;
+        width: 950px;
     }
 
+    /* .pc {
+        display: none;
+    } */
+
+    /* .mobile {
+        display: block;
+    } */
+
+    /*-----------------------------------SETTING-----------------------------------------*/
+
+
+    /*-----------------------------------HEADER-----------------------------------------*/
+
+
+    /* .logo img {
+        width: auto;
+        position: absolute;
+        left: 20px;
+        transform: translate(0, -50%);
+    } */
+
+    /*-----------------------------------HEADER-----------------------------------------*/
+
+
+    /*-----------------------------------BANNER-----------------------------------------*/
+    .banner-content {
+        width: 950px;
+    }
+
+    .banner-content__title {
+        font-size: 60px;
+    }
+
+    /*-----------------------------------BANNER-----------------------------------------*/
+
+
+
+    /*-----------------------------------ABOUT-----------------------------------------*/
+    .our__card {
+        width: min-content;
+    }
+
+    .about-column img {
+        width: 550px;
+    }
+
+    .our__txt {
+        padding: 30px;
+        gap: 20px;
+    }
+
+    /*-----------------------------------ABOUT-----------------------------------------*/
+
+
+    /*-----------------------------------OUR-----------------------------------------*/
     .our__card {
         flex-direction: column;
     }
+
+    .our__cards {
+        align-items: center;
+    }
+
+    /*-----------------------------------OUR-----------------------------------------*/
+
+
 }
 
-@media screen and (max-width: 969px) and (min-width: 730px) {
+@media screen and (max-width: 969px) {
     .section {
         width: 700px;
     }
-}
 
-@media screen and (max-width: 729px) {
-    .section {
+    .banner-content {
         width: 700px;
     }
 }
