@@ -7,33 +7,33 @@
         </nav>
         <div class="logo">
             <a href="index.php">
-                <img src="assets/img/logo/logo.png" alt="">
+                <img src="assets/img/logo/logo.svg" alt="">
             </a>
         </div>
         <div class="login pc">
             <?php
             if (!isset($_SESSION['USER'])) {
             ?>
-                <a href="?page=login">Войти</a>
+            <a href="?page=login">Войти</a>
             <?php
             } else {
             ?>
-                <a href="?page=user" class="btn">
-                    <?
+            <a href="?page=user" class="btn">
+                <?
                     if ($USER['role_id'] == 2) {
                     ?>
-                        Панель администратора
-                    <?
+                Панель администратора
+                <?
                     } else {
                     ?>
-                        Профиль
-                    <?
+                Профиль
+                <?
                     }
                     ?>
-                </a>
-                <a href="?exit" class="btn">
-                    Выйход
-                </a>
+            </a>
+            <a href="?exit" class="btn">
+                Выход
+            </a>
             <?
             }
             ?>
