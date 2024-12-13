@@ -5,26 +5,28 @@ $sql = "SELECT * FROM `catalog` WHERE id='$id'";
 $query = $conn->query($sql);
 $catalog = $query->fetch(PDO::FETCH_ASSOC);
 
-$sql = "SELECT * FROM `catalog` ORDER BY `id`
-LIMIT 3";
-$query = $conn->query($sql);
-$catalogs = $query->fetchAll(PDO::FETCH_ASSOC);
 
 if (isset($_POST['brony'])) {
     $date = $_POST['date'];
     $watch = $_POST['watch'];
+    $people = $_POST['people'];
+    $today = date('Y-m-d');
+    echo '<script>window.onload = function() { showModal(); };</script>';
 
     $flag = 'true';
-    $error = [
-        '<p class="error">Заполните даты</p>'
+    $errors = [
+        '<p class="error">Заполните дату</p>',
+        '<p class="error">Неправильная дата</p>',
+        '<p class="error">Заполните количетсво человек</p>',
+        '<p class="error">Вы привысили лимит людей</p>'
     ];
 }
 
 ?>
 <!-- ---------------------------------MAIN-------------------------------------- -->
-<div class="section">
-    <div class="main__title mt100">
-        баня №1
+<div class="section mt140">
+    <div class="main__title ">
+        <?= $catalog['name'] ?>
     </div>
     <div class="main__row">
         <div class="main__column">
@@ -35,13 +37,8 @@ if (isset($_POST['brony'])) {
         <div class="main__column">
             <div class="main__txt">
                 <div class="main__subtitle">
-                    Двухэтажная баня. В бани имеется комната отдыха на первом
-                    этаже, большой обеденный стол со стульями, диван, телевизор.
-                    Парная, большая помывочная. В помывочной располагаются 2
-                    купели, одна с холодной водой, другая с теплой. На улице
-                    находите теплый чан , подогреваемый дровами. На втором
-                    этаже находится зона отдыха с большой двуспальной кроватью.
-                    Комната сеновая и комната гардеробная.
+                    <?= $catalog['description'] ?>
+
                 </div>
                 <div class="main__inf">
                     <div class="main__inf-column">
@@ -49,7 +46,8 @@ if (isset($_POST['brony'])) {
                             [ вместимость ]
                         </div>
                         <div class="main__inf-subtitle">
-                            до 20 человек
+                            до <?= $catalog['capacity'] ?>
+                            человек
                         </div>
                     </div>
                     <div class="main__inf-column">
@@ -57,7 +55,8 @@ if (isset($_POST['brony'])) {
                             [ время аренды ]
                         </div>
                         <div class="main__inf-subtitle">
-                            от 4 часов
+                            от <?= $catalog['watch'] ?>
+                            часов
                         </div>
                     </div>
                     <div class="main__inf-column">
@@ -65,7 +64,8 @@ if (isset($_POST['brony'])) {
                             [ площадь ]
                         </div>
                         <div class="main__inf-subtitle">
-                            80 м2
+                            <?= $catalog['square'] ?>
+                            м2
                         </div>
                     </div>
                 </div>
@@ -76,35 +76,103 @@ if (isset($_POST['brony'])) {
                             [ стоимость ]
                         </div>
                         <div class="main__price-subtitle">
-                            6 000 ₽/час
+                            <?= $catalog['price'] ?>
+                            ₽/час
                         </div>
                     </div>
                     <div class="main__btns">
-                        <!-- <div class="main__btn btn-fill">
-                            <a href="">Забронировать</a>
-                        </div> -->
+                        <button class="form__btn" id="open-modal">Забронировать</button>
+
                     </div>
                 </div>
-                <form action="" class="from_bron" method="post">
-                    <label for="">Дата брони</label>
-                    <input type="date" name="date" class="form__input form_date">
-                    <label for="">На сколько?</label>
-                    <input type="text" name="watch" class="form__input form_date">
-                    <button type="submit" class="form__btn" name="brony">Забронировать</button>
-                </form>
 
-                <?php
-                if (isset($_POST['brony'])) {
-                    if ($flag != 'false') {
-                        $id_user = $USER['id'];
-                        $sql = "INSERT INTO `orders`(`id`, `date`, `watch`, `catalog_id`, `user_id`) VALUES (null,'$date','$watch','$id','$id_user')";
-                        $res = $conn->query($sql);
-                        echo '<script> document.location.href="?page=user"</script>';
-                    }
-                }
-                ?>
             </div>
         </div>
     </div>
 </div>
 <!-- ---------------------------------MAIN-------------------------------------- -->
+
+
+<!-- ---------------------------------MODAL-------------------------------------- -->
+<div id="modal" class="modal">
+    <div class="modal-content">
+        <span class="close">×</span>
+        <form action="" class="from_bron" method="post">
+            <label for="">Дата брони</label>
+            <input type="date" name="date" class="form__input form_date">
+            <?
+            if (empty($date)) {
+                $error = $errors[0];
+                $flag = 'false';
+            } elseif ($date < $today) {
+                $error = $errors[1];
+                $flag = 'false';
+            }
+            ?>
+            <label for="">На сколько часов</label>
+            <input type="text" name="watch" class="form__input form_date">
+            <label for="">Количество людей</label>
+            <input type="text" name="people" class="form__input form_date">
+            <?
+            if (empty($people)) {
+                $error = $errors[2];
+                $flag = 'false';
+            } elseif ($people > $catalog['capacity']) {
+                $error = $errors[3];
+                $flag = 'false';
+            }
+            ?>
+            <button type="submit" class="form__btn" name="brony">Забронировать</button>
+        </form>
+
+
+        <?php
+        if (isset($_POST['brony'])) {
+            if ($flag != 'false') {
+                $id_user = $USER['id'];
+                $sql = "INSERT INTO `orders`(`id`, `date`, `watch`, `catalog_id`, `user_id`) VALUES (null,'$date','$watch','$id','$id_user')";
+                $res = $conn->query($sql);
+                // echo '<script> document.location.href="?page=user"</script>';
+            }
+        }
+        ?>
+    </div>
+</div>
+
+
+<div id="modal_сomplete" class="modal_сomplete">
+    <div class="modal_complete-content">
+        <span class="close" onclick="hideModal()">×</span>
+        <?
+        if ($flag == 'false') {
+        ?>
+            <p>
+                <?
+                echo $error;
+                ?>
+            </p>
+        <?
+        } else {
+        ?>
+            <p>Ваша заявка находиться на рассмотрение</p>
+        <?
+        }
+        ?>
+    </div>
+</div>
+<!-- ---------------------------------MODAL-------------------------------------- -->
+
+
+<script>
+    function showModal() {
+        var modal = document.getElementById("modal_сomplete");
+        modal.classList.add("show");
+
+        setTimeout(hideModal, 3000);
+    }
+
+    function hideModal() {
+        var modal = document.getElementById("modal_сomplete");
+        modal.classList.remove("show");
+    }
+</script>

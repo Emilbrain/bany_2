@@ -38,7 +38,7 @@ if ($USER['role_id'] == 2) {
                     echo $errors[0];
                 }
             } ?>
-            <textarea type="text" class="form__input" name="description" placeholder="Описание"><?= $catalog['description'] ?></textarea>
+            <textarea class=" textarea__form" name="description" placeholder="Описание"><?= $catalog['description'] ?></textarea>
             <?php
             if (isset($_POST['edit-сatalog'])) {
                 if (empty($description)) {
@@ -78,7 +78,7 @@ if ($USER['role_id'] == 2) {
                     echo $errors[0];
                 }
             } ?>
-            <input type="file" name="img" id="" placeholder="добавить фото">
+            <input type="file" name="img" id="img" placeholder="добавить фото">
 
             <button type="submit" class="form__btn" name="edit-catalog">Добавить</button>
 

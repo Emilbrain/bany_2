@@ -11,15 +11,14 @@
                 <a href="mailto:contact@lift.agency">Inf_bany@mail.ru</a>
             </div>
         </div>
-        <div class="footer__column pc">
+        <div class="footer__column pcmobile ">
             <div class="footer__nav">
-                <a href="?page=catalog">Каталог</a>
-                <a href="#">Акции</a>
-                <a href="#">О нас</a>
-                <a href="#">Помощь</a>
+                <a href="?page=catalog">бани</a>
+                <a href="?page=action">Акции</a>
+                <a href="#feedback">Отзывы</a>
             </div>
         </div>
-        <div class="footer__column pc">
+        <div class="footer__column pcmobile">
             <div class="footer__soc">
                 <a href="https://vk.com/" target="_blank">Вконтакте</a>
                 <a href="https://WhatsApp.com/" target="_blank">WhatsApp</a>

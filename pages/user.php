@@ -13,8 +13,6 @@ $user_id = $USER['id'];
 $sql = "SELECT * FROM `orders` WHERE `user_id`='$user_id'";
 $query = $conn->query($sql);
 $order_use = $query->fetchAll(PDO::FETCH_ASSOC);
-
-
 ?>
 
 <div class="section">
@@ -62,100 +60,56 @@ $order_use = $query->fetchAll(PDO::FETCH_ASSOC);
 
 
     <!--catalog-->
-    <div class="section mt100">
-        <?
-        if ($USER['role_id'] == 2) {
-        ?>
-            <h2>
-                Заказы на бронь
-            </h2>
-        <?
-        } else {
-        ?>
 
+    <?
+    if ($USER['role_id'] == 2) {
+    ?>
+        <div class="section mt100">
+
+            <div class="admin__nav">
+                <div class="btn-fill">
+                    <a href="?page=user&table=catalog">Каталог</a>
+                    <a href="?page=user&table=user">Пользователи</a>
+                    <a href="?page=user&table=certificate">Сертификаты</a>
+                    <a href="?page=user&table=orders">Бронь</a>
+                </div>
+            </div>
+
+            <?
+            if (isset($_GET['table'])) {
+                $table = $_GET['table'];
+                if ($table == 'catalog') {
+                    include "table__catalog.php";
+                } elseif ($table == 'user') {
+                    include "table__user.php";
+                } elseif ($table == 'certificate') {
+                    include "table__certificate.php";
+                } elseif ($table == 'orders') {
+                    include "table__orders.php";
+                }
+            } else {
+                include "table__orders.php";
+            }
+            ?>
+
+        </div>
+    <?
+    }
+    ?>
+
+
+
+
+    <?
+    if ($USER['role_id'] == 1) {
+
+    ?>
+        <div class="section mt100 mtsect ">
             <h2>
                 Моя история
             </h2>
+        </div>
         <?
-        }
-        ?>
-    </div>
-
-    <?php
-    if ($USER['role_id'] == 2) {
-        if (count($orders) > 0) {
-
-            foreach ($orders as $order) {
-
-                $idr = $order['catalog_id'];
-                $sql = "SELECT * FROM `catalog` WHERE `id`='$idr'";
-                $query = $conn->query($sql);
-                $catalo = $query->fetch(PDO::FETCH_ASSOC);
-
-    ?>
-                <div class="our__card">
-                    <div class="our__img">
-                        <img src="<?= $catalo['img'] ?>" alt=" ">
-                    </div>
-                    <div class="our__txt">
-                        <div class="our__title">
-                            <?= $catalo['name'] ?>
-                        </div>
-                        <div class="our__subtitle">
-                            <?= $catalo['description'] ?>
-                        </div>
-                        <div class="our__inf">
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ вместимость ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    до <?= $catalo['capacity'] ?> человек
-                                </div>
-                            </div>
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ время аренды ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    от <?= $catalo['watch'] ?> часов
-                                </div>
-                            </div>
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ площадь ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    <?= $catalo['square'] ?> м2
-                                </div>
-                            </div>
-                        </div>
-                        <div class="our__price">
-                            <div class="our__price-title">
-                                Дата и время
-                            </div>
-                            <div class="our__price-subtitle">
-                                <?= $order['date'] ?> <?= $order['watch'] ?>ч.
-                            </div>
-                        </div>
-                        <div class="our__btns">
-                            <div class="our__btn btn-fill">
-                                <a href="?page=accept&id=<?= $order['id'] ?>">Принять</a>
-
-                            </div>
-                            <div class="our__btn btn-border">
-                                <a href="?page=reject&id=<?= $order['id'] ?>">Отклонить</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            <?
-            }
-        } else {
-            echo "Нет бань ";
-        }
-    } else {
         if (count($order_use) > 0) {
             foreach ($order_use as $orde) {
 
@@ -170,7 +124,7 @@ $order_use = $query->fetchAll(PDO::FETCH_ASSOC);
                 $status = $query->fetch(PDO::FETCH_ASSOC);
 
 
-            ?>
+        ?>
                 <div class="our__card">
                     <div class="our__img">
                         <img src="<?= $catal['img'] ?>" alt=" ">
@@ -233,96 +187,6 @@ $order_use = $query->fetchAll(PDO::FETCH_ASSOC);
     }
     ?>
 
-
-    <div class="user_cont mt100 ">
-        <?
-        if ($USER['role_id'] == 2) {
-        ?>
-            <div class="df">
-                <h2>
-                    Каталог
-                </h2>
-
-                <div class="user_btn btn-fill">
-                    <a href="?page=add-catalog">Добавить баню</a>
-                </div>
-            </div>
-
-    </div>
-    <div class="our__cards">
-        <?
-            if (count($catalogs) > 0) {
-
-                foreach ($catalogs as $catalog) {
-        ?>
-                <div class="our__card">
-                    <div class="our__img">
-                        <img src="<?= $catalog['img'] ?>" alt=" ">
-                    </div>
-                    <div class="our__txt">
-                        <div class="our__title">
-                            <?= $catalog['name'] ?>
-                        </div>
-                        <div class="our__subtitle">
-                            <?= $catalog['description'] ?>
-                        </div>
-                        <div class="our__inf">
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ вместимость ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    до <?= $catalog['capacity'] ?> человек
-                                </div>
-                            </div>
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ время аренды ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    от <?= $catalog['watch'] ?> часов
-                                </div>
-                            </div>
-                            <div class="our__inf-column">
-                                <div class="our__inf-title">
-                                    [ площадь ]
-                                </div>
-                                <div class="our__inf-subtitle">
-                                    <?= $catalog['square'] ?> м2
-                                </div>
-                            </div>
-                        </div>
-                        <div class="our__price">
-                            <div class="our__price-title">
-                                [ стоимость ]
-                            </div>
-                            <div class="our__price-subtitle">
-                                <?= number_format($catalog['price'], 0, '.', ' ') ?> ₽/час
-                            </div>
-                        </div>
-                        <div class="our__btns">
-                            <div class="our__btn btn-fill">
-                                <a href="?page=edit-catalog&id=<?= $catalog['id'] ?>">Редактировать</a>
-                            </div>
-                            <div class="our__btn btn-border">
-                                <a href="?page=delete&id=<?= $catalog['id'] ?>">Удалить</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-        <?
-                }
-            } else {
-                echo "Нет бань ";
-            }
-        ?>
-
-    </div>
-<?
-        }
-?>
-</div>
 </div>
 
 <!--catalog-->

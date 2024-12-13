@@ -3,7 +3,21 @@
         <nav class="pc">
             <a href="?page=catalog">Бани</a>
             <a href="?page=action">Акции</a>
-            <a href="#">Меню</a>
+            <a href="
+                    <?php
+
+                    if (empty($_GET["page"]) || $_GET["page"] == "catalog") {
+                    ?>
+                        #feedback
+                        <?
+                    } else {
+                        ?>
+                        index.php#feedback
+                        <?
+                    }
+                        ?>
+                    
+                    ">Отзывы</a>
         </nav>
         <div class="logo">
             <a href="index.php">
@@ -14,29 +28,85 @@
             <?php
             if (!isset($_SESSION['USER'])) {
             ?>
-            <a href="?page=login">Войти</a>
+                <a href="?page=login">Войти</a>
             <?php
             } else {
             ?>
-            <a href="?page=user" class="btn">
-                <?
+                <a href="?page=user" class="btn">
+                    <?
                     if ($USER['role_id'] == 2) {
                     ?>
-                Панель администратора
-                <?
+                        Панель администратора
+                    <?
                     } else {
                     ?>
-                Профиль
-                <?
+                        Профиль
+                    <?
                     }
                     ?>
-            </a>
-            <a href="?exit" class="btn">
-                Выход
-            </a>
+                </a>
+                <a href="?exit" class="btn">
+                    Выход
+                </a>
             <?
             }
             ?>
+        </div>
+
+        <div class="burgers mobile">
+            <nav class="navbar">
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+                <div class="nav-menu">
+                    <a href="index.php">Главная</a>
+                    <a href="?page=catalog">Бани</a>
+                    <a href="?page=action">Акции</a>
+                    <a href="
+                    <?php
+
+                    if (empty($_GET["page"]) || $_GET["page"] == "catalog") {
+                    ?>
+                        #feedback
+                        <?
+                    } else {
+                        ?>
+                        index.php
+                        <?
+                    }
+                        ?>
+                    
+                    ">Отзывы</a>
+                    <?php
+                    if (!isset($_SESSION['USER'])) {
+                    ?>
+                        <a href="?page=login">Войти</a>
+                    <?php
+                    } else {
+                    ?>
+                        <a href="?page=user" class="btn">
+                            <?
+                            if ($USER['role_id'] == 2) {
+                            ?>
+                                Панель администратора
+                            <?
+                            } else {
+                            ?>
+                                Профиль
+                            <?
+                            }
+                            ?>
+                        </a>
+                        <a href="?exit" class="btn">
+                            Выход
+                        </a>
+                    <?
+                    }
+                    ?>
+                </div>
+            </nav>
         </div>
     </div>
 </div>

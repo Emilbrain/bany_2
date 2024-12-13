@@ -60,35 +60,39 @@ global $conn;
     ?>
 
     <script>
-    document.querySelectorAll('.answer').forEach(answer => {
-        answer.style.setProperty('--max-height', `${answer.scrollHeight}px`);
-    });
-
-    document.querySelectorAll('.question-title').forEach(button => {
-        button.addEventListener('click', event => {
-            const question = event.target.closest('.question');
-            const answer = question.querySelector('.answer');
-
-            // Проверяем, является ли текущий вопрос активным
-            if (question.classList.contains('active')) {
-                question.classList.remove('active');
-                answer.style.maxHeight = '0';
-            } else {
-                // Закрываем все активные вопросы
-                document.querySelectorAll('.question.active')
-                    .forEach(item => {
-                        item.classList.remove('active');
-                        item.querySelector('.answer').style.maxHeight = '0';
-                    });
-
-                // Открываем текущий вопрос
-                question.classList.add('active');
-                answer.style.maxHeight = `${answer.scrollHeight}px`;
-            }
+        document.querySelectorAll('.answer').forEach(answer => {
+            answer.style.setProperty('--max-height', `${answer.scrollHeight}px`);
         });
-    });
+
+        document.querySelectorAll('.question-title').forEach(button => {
+            button.addEventListener('click', event => {
+                const question = event.target.closest('.question');
+                const answer = question.querySelector('.answer');
+
+                // Проверяем, является ли текущий вопрос активным
+                if (question.classList.contains('active')) {
+                    question.classList.remove('active');
+                    answer.style.maxHeight = '0';
+                } else {
+                    // Закрываем все активные вопросы
+                    document.querySelectorAll('.question.active')
+                        .forEach(item => {
+                            item.classList.remove('active');
+                            item.querySelector('.answer').style.maxHeight = '0';
+                        });
+
+                    // Открываем текущий вопрос
+                    question.classList.add('active');
+                    answer.style.maxHeight = `${answer.scrollHeight}px`;
+                }
+            });
+        });
     </script>
     <script src="assets/JS/slider.js"></script>
+    <script src="assets/JS/slider_otzv.js"></script>
+    <script src="assets/JS/burger.js"></script>
+    <script src="assets/JS/modal.js"></script>
+
 </body>
 
 </html>
